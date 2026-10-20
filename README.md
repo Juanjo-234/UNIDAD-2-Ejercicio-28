@@ -1,9 +1,11 @@
-Resolución del ejercicio N°28 de la unidad 2 de programación 2.
-Este programa simula un sistema de control de acceso centralizado que gestiona múltiples mecanismos de autenticación mediante interfaces, procesando validaciones de seguridad de manera dinámica y flexible.
+Este programa está diseñado para modelar y gestionar un sistema flexible de validación de identidad corporativa o de usuarios mediante múltiples mecanismos de autenticación (como contraseñas, biometría y tokens OAuth) utilizando polimorfismo, una interfaz común de autenticación y un servicio centralizado de inicio de sesión mediante programación orientada a objetos (por ejemplo, en Java).
 
-Clases e Interfaz Utilizadas
-MetodoAutenticacion (Interfaz): Define el contrato estándar para validar credenciales principales y secundarias.
-AuthPassword: Implementa la interfaz validando combinaciones de usuario y contraseña tradicionales.
-AuthBiometrica: Implementa la interfaz verificando identificadores de usuario frente a firmas biométricas registradas.
-AuthTokenOAuth: Implementa la interfaz validando identificadores de cliente con tokens de acceso digitales.
-ServicioLogin: Clase coordinadora que recibe cualquier implementación de la interfaz para procesar el acceso del usuario de forma dinámica.
+A continuación se detalla exactamente lo que hace cada parte del programa:
+
+Define la interfaz MetodoAutenticacion: Establece el contrato modular estándar que todo proveedor de identidad debe cumplir, declarando el método abstracto fundamental boolean autenticar(String credencialPrincipal, String credencialSecundaria).
+
+Implementa clases concretas (AuthPassword, AuthBiometrica, AuthTokenOAuth): Heredan y ejecutan la interfaz adaptando la lógica de validación a sus respectivas tecnologías (comparación de hashes de contraseñas, análisis de correspondencia de patrones biométricos o validación de tokens contra servidores de autorización externos).
+
+Diseña la clase ServicioLogin: Actúa como el orquestador o gestor central que mantiene una referencia a la interfaz abstracta del método de autenticación, permitiendo procesar accesos de manera desacoplada sin importar el mecanismo subyacente empleado.
+
+Ejecuta la prueba polimórfica (main): Instancia el servicio de login, configura distintos proveedores de autenticación, simula múltiples intentos de inicio de sesión (tanto exitosos como fallidos por credenciales incorrectas) y refleja los resultados detallados por consola.
